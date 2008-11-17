@@ -1,0 +1,50 @@
+#!/usr/bin/ruby
+#### SO FAR,
+#### THI IS JUST A TESTING FILE AND COINTAINS NOTHING MORE THAN SKELETTON FOR FUTURE CODE. 
+#### CHEERS, 
+#### FC
+
+require 'rubygems'
+require 'getoptlong'
+
+opts = GetoptLong.new(
+[ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+['--user','-u', GetoptLong::REQUIRED_ARGUMENT ],
+['--pass', '-p', GetoptLong::REQUIRED_ARGUMENT ],
+['--input','-i' GetoptLong::REQUIRED_ARGUMENT ],
+)
+
+opts.each do |opt, arg|
+  case opt
+    when '--help':
+      # BEGIN OF HELP
+      puts "\nHELP for HeadScanner\n---------------------\n
+      --help, -h
+      \tWell I guess you know what this is for (To obtain this Help).\n
+      --server, -i
+      \t This option requires an IP/URL address \",\".\n
+      --user 
+      \tThe username for the server.\n
+      --pass 
+      \tThe password for the server.\n
+      --input
+      \tThe Sicherheit task file.
+      Copyright 2008 -- FreedomCoder - matiasbrutti AT gmail DOT com\n"
+      #END OF HELP
+      exit(0)
+      
+    when '--server':
+      arg.split(",").each {|x| }
+    when '--url':
+      arg.split(",").each {|x| }
+    when '--user':
+      config[:user] = arg
+    when '--user':
+      config[:password] = arg
+    when '--file':
+      tasks = File.new(arg)
+    else
+      puts "Unknown command. Please try again"
+      exit(0)
+  end
+end
