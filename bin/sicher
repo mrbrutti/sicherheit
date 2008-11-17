@@ -11,7 +11,7 @@ opts = GetoptLong.new(
 [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
 ['--user','-u', GetoptLong::REQUIRED_ARGUMENT ],
 ['--pass', '-p', GetoptLong::REQUIRED_ARGUMENT ],
-['--input','-i' GetoptLong::REQUIRED_ARGUMENT ],
+['--input','-i', GetoptLong::REQUIRED_ARGUMENT ]
 )
 
 opts.each do |opt, arg|
@@ -22,7 +22,7 @@ opts.each do |opt, arg|
       --help, -h
       \tWell I guess you know what this is for (To obtain this Help).\n
       --server, -i
-      \t This option requires an IP/URL address \",\".\n
+      \t This option requires an IP/URL address.\n
       --user 
       \tThe username for the server.\n
       --pass 
@@ -45,6 +45,6 @@ opts.each do |opt, arg|
       tasks = File.new(arg)
     else
       puts "Unknown command. Please try again"
-      exit(0)
+     exit(0)
   end
 end
