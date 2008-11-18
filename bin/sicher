@@ -9,6 +9,7 @@ require 'getoptlong'
 
 opts = GetoptLong.new(
 [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+['--server','-s', GetoptLong::REQUIRED_ARGUMENT ],
 ['--user','-u', GetoptLong::REQUIRED_ARGUMENT ],
 ['--pass', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 ['--input','-i' GetoptLong::REQUIRED_ARGUMENT ],
@@ -40,7 +41,7 @@ opts.each do |opt, arg|
       arg.split(",").each {|x| }
     when '--user':
       config[:user] = arg
-    when '--password':
+    when '--pass':
       config[:password] = arg
     when '--input':
       tasks = File.new(arg)
