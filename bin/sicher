@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 #### SO FAR,
-#### THI IS JUST A TESTING FILE AND COINTAINS NOTHING MORE THAN SKELETTON FOR FUTURE CODE. 
+#### THI IS JUST A TESTING FILE AND COINTAINS NOTHING MORE THAN SKELETON FOR FUTURE CODE. 
 #### CHEERS, 
 #### FC
 
@@ -9,9 +9,15 @@ require 'getoptlong'
 
 opts = GetoptLong.new(
 [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+['--server','-s', GetoptLong::REQUIRED_ARGUMENT ],
 ['--user','-u', GetoptLong::REQUIRED_ARGUMENT ],
 ['--pass', '-p', GetoptLong::REQUIRED_ARGUMENT ],
+<<<<<<< HEAD:bin/sicher
 ['--input','-i', GetoptLong::REQUIRED_ARGUMENT ]
+=======
+['--input','-i' GetoptLong::REQUIRED_ARGUMENT ],
+['--url','-l' GetoptLong::REQUIRED_ARGUMENT ]
+>>>>>>> 06e595f362aae3428423f37b38862f860442a635:bin/sicher
 )
 
 opts.each do |opt, arg|
@@ -25,7 +31,7 @@ opts.each do |opt, arg|
       \t This option requires an IP/URL address.\n
       --user 
       \tThe username for the server.\n
-      --pass 
+      --password
       \tThe password for the server.\n
       --input
       \tThe Sicherheit task file.
@@ -39,9 +45,9 @@ opts.each do |opt, arg|
       arg.split(",").each {|x| }
     when '--user':
       config[:user] = arg
-    when '--user':
+    when '--pass':
       config[:password] = arg
-    when '--file':
+    when '--input':
       tasks = File.new(arg)
     else
       puts "Unknown command. Please try again"
