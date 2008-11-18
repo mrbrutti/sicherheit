@@ -11,13 +11,9 @@ opts = GetoptLong.new(
 [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
 ['--server','-s', GetoptLong::REQUIRED_ARGUMENT ],
 ['--user','-u', GetoptLong::REQUIRED_ARGUMENT ],
-['--pass', '-p', GetoptLong::REQUIRED_ARGUMENT ],
-<<<<<<< HEAD:bin/sicher
-['--input','-i', GetoptLong::REQUIRED_ARGUMENT ]
-=======
+['--password', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 ['--input','-i' GetoptLong::REQUIRED_ARGUMENT ],
 ['--url','-l' GetoptLong::REQUIRED_ARGUMENT ]
->>>>>>> 06e595f362aae3428423f37b38862f860442a635:bin/sicher
 )
 
 opts.each do |opt, arg|
@@ -35,7 +31,7 @@ opts.each do |opt, arg|
       \tThe password for the server.\n
       --input
       \tThe Sicherheit task file.
-      Copyright 2008 -- FreedomCoder - matiasbrutti AT gmail DOT com\n"
+      Copyright 2008 -- [Keygod,Rodolinux,FreedomCoder]\n"
       #END OF HELP
       exit(0)
       
