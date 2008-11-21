@@ -12,7 +12,7 @@ module Sicherheit
       end
     end
 
-    attr_reader :level
+    attr_accessor :level
     
     def log(level=nil,msg)
       if !self.level.nil?
