@@ -10,53 +10,61 @@ module Sicherheit
           r = run("nmap #{parse_opt(options)}")
         elsif options.is_a?(String)
           r = run("nmap #{options}")
-        end
-  
+        end 
         yield if block_given?
       end
       
       def parse_gnmap()
       end
-      #Short version that actually does not check for errors
+      #Short version that actually does not check for unknown options.
       def parse_opt2(options={})  
         options.each_pair do |key,val|
           cli_options << " -#{key.to_str} " 
-          cli_options << val if !val.nil? && val != true
+          cli_options << val if !val.nil?
         end
       end
+
       #Detailed version with case for each command option. 
       def parse_opt(options={})
-        cli_options
+        cli_options = String.new
         options.each_pair do |key,val|
         case key
           when :sL
-            cli_options << " -sL #{val}"
+            cli_options << " -sL"
           when :sP
+            cli_options << " -sP"
           when :PN
-          when :PS
-          when :PA 
-          when :PU
-          when :PE
-          when :PP
-          when :PM
+            cli_options << " -PN"
+          when :PS || :PA || :PU
+            cli_options << " -#{key.to_str} #{val}"
+          when :PE || :PP || :PM
+            cli_options << " -#{key.to_str}"
           when :PO
+            cli_options << " -PO #{val}"
           when :PR 
           when :traceroute
            cli_options << " --traceroute"
           when :reason
-          when :n
-          when :R 
-          when :systemdns
-          when :dnsservers
-          when :sT
-          when :sU
+            cli_options << " --reason"
+          when :n || :R 
+            cli_options << " -#{key.to_str}"
+          when :system_dns
+            cli_options << " --system-dns"
+          when :dns_servers
+            cli_options << " --dns-servers #{val}"
+          when :sS || :TCP_SYN
+            cli_options << " -sS"
+          when :sT || :Connect 
+            cli_options << " -sT"
+          when :sU || :UDP_Scan
+            cli_options << " -SU"
           when :sN
           when :sF
           when :sX
-          when :sN
+          when :sM
           when :sF
           when :sX
-          when :sA
+          when :sA || :ACK
           when :sW
           when :sM
           when :scanflags
