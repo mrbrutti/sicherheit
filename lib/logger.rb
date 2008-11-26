@@ -1,13 +1,13 @@
 module Sicherheit
   class Logger
     def initialize(options={})
-      @level = options[:level]
+      @level = options[:level] ||  "INFO"
       output = options[:output] || $stderr
 
       if outpuit.response_to?(:puts)
         @device = output
       else
-        @device = File.new(ouput.to_str, "a")
+        @device = File.new(output, "a")
         @open = true
       end
     end
@@ -15,11 +15,11 @@ module Sicherheit
     attr_accessor :level
     
     def log(level=nil,msg)
-      if !self.level.nil?
+      if self.level || level
         msg.strip!("\n").strip!("\r") # Avoid new lines
         device.puts "[#{Time.now}][#{level||self.level}]--#{msgs}\n"
       else
-        raise "Not global or instanse level provided"
+        raise "Not global or local loggin level provided"
       end
     end
 
