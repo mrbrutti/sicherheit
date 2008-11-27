@@ -4,7 +4,7 @@ module Sicherheit
       @level = options[:level] ||  "INFO"
       output = options[:output] || $stderr
 
-      if outpuit.response_to?(:puts)
+      if output.response_to?(:puts)
         @device = output
       else
         @device = File.new(output, "a")
