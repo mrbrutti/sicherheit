@@ -4,7 +4,7 @@ require 'sicherheit/base'
 module Sicherheit
   class Scan
     module Nmap
-      def nmap(*options, &block)
+      def nmap(options, &block)
         
         if options.is_a?(Hash)
           r = run("nmap #{parse_opt(options)}")
