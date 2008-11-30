@@ -85,7 +85,8 @@ module Sicherheit
                     val == "g" || val == "x")
                   cli_options << " -Tuning #{val}"
                 else
-                  raise ArgumentError, "#{key.to_str}: Invalid value should be 1,2,3,4,5,6,7,8,9,0,a,b,g or x"
+                  raise ArgumentError, 
+                        "#{key.to_str}: Invalid value should be 1,2,3,4,5,6,7,8,9,0,a,b,g or x"
                 end
               when :update
                 # update databases and plugins from cirt.net (cannot be abbreviated)
