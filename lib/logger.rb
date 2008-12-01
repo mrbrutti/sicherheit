@@ -16,7 +16,11 @@ module Sicherheit
 
     def log(level, msg)
       if self.level || level
-        @device.write "[#{Time.now.gmtime}][#{level||self.level}]--#{msg}\n"
+        begin
+          @device.write "[#{Time.now.gmtime}][#{level||self.level}]--#{clean(msg)}\n"
+        rescue
+          Raise "Something went Wrong writing to file"
+        end
       else
         raise ArgumentError, "Not global or local loggin level provided"
       end
@@ -30,7 +34,7 @@ module Sicherheit
     end
     
     def clean(msg)
-      msg.strip! if msg.match(/\n|\r/) != nil
+      msg.match(/\n|\r/) != nil ? msg.strip!  : msg
     end
     
     def close
