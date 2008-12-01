@@ -8,15 +8,15 @@ module Sicherheit
         @device = output
       else
         @device = File.new(output, "a")
+        @device.sync = true
         @open = true
       end
     end
     attr_accessor :level
-    
-    def log( level, msg)
+
+    def log(level, msg)
       if self.level || level
-        msg.strip!("\n").strip!("\r") # Avoid new lines
-        @device.puts "[#{Time.now}][#{level||self.level}]--#{msgs}\n"
+        @device.write "[#{Time.now.gmtime}][#{level||self.level}]--#{msg}\n"
       else
         raise ArgumentError, "Not global or local loggin level provided"
       end
@@ -25,10 +25,14 @@ module Sicherheit
     %w(debug info trace).each do |log_level| 
       class_eval "
         def #{log_level}(message)
-          log(#{log_level.upcase}, message, line_prefix)
+          log('#{log_level.upcase}', message)
         end"
     end
-
+    
+    def clean(msg)
+      msg.strip! if msg.match(/\n|\r/) != nil
+    end
+    
     def close
      @device.close if @open
     end
