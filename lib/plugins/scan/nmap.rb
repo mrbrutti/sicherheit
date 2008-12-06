@@ -1,6 +1,3 @@
-require 'sicherheit/logger'
-require 'sicherheit/base'
-
 module Sicherheit
   class Plugins
     module Scan
@@ -212,7 +209,7 @@ module Sicherheit
                 cli_options << " --no-stylesheet"
               when :webxml
                 cli_options << " --webxml"
-              when :6 || :ipv6
+              when 6.to_syn || :ipv6
                 cli_options << " -6"
               when :A 
                 cli_options << " -A"

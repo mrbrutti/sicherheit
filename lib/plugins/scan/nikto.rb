@@ -5,6 +5,7 @@ module Sicherheit
   class Plugins
     module Scan
       module Nikto
+        
         def nikto(options, &block)
           if options.is_a?(Hash)
             r = run("nikto #{parse_opt(options)}")

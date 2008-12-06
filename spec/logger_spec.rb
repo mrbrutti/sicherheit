@@ -29,7 +29,7 @@ describe Logger do
   end
   
   it "should output a number and not nil when logging" do
-    @Log2.debug("testing debug").should_not == nil
+    @Log2.debug("testing debug").should_not   == nil
     @Log2.info("testing info").should_not == nil
     @Log2.trace("testing trace").should_not == nil
   end
