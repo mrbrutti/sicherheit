@@ -19,7 +19,7 @@ module Sicherheit
           cli_options
           options.each_pair do |key,val|
             case key
-              when :C || :Cgidirs   
+              when :C , :Cgidirs   
                 # scan these CGI dirs: 'none', 'all', or values like "/cgi/ /cgi-a/"
                 cli_options << " -Cgidirs #{val}"
               when :dbcheck    
@@ -33,36 +33,36 @@ module Sicherheit
                 else
                   raise ArgumentError, "#{key.to_str}: Invalid value should be 1,2,3,4,5,6,7 or 8"
                 end
-              when :F || :Format 
+              when :F , :Format 
                 # save file (-o) format
                 if (val == "csv" || val == "htm" || val == "xml" || val == "txt" )
                   cli_options << " -Format #{val}"
                 else
                   raise ArgumentError, "#{key.to_str}: Invalid value should be csv, htm, txt or xml"
                 end
-              when :h || :host
+              when :h , :host
                 # target host
                 cli_options << " -host #{val}"
-              when :H || :Help       
+              when :H , :Help       
                 # Extended help information
                 cli_options << " -Help"
-              when :i || :id
+              when :i , :id
                 # host authentication to use, format is userid:password
                 cli_options << " -id #{val}"
-              when :m || :mutate
+              when :m , :mutate
                 # Guess additional file names
                 if (val == 1 || val == 2 || val == 3 || val == 4 ) 
                   cli_options << " -mutate #{val}"
                 else
                   raise ArgumentError, "#{key.to_str}: Invalid value should be 1,2,3 or 4"
                 end
-              when :o || :output
+              when :o , :output
                 # write output to this file
                 cli_options << " -output #{val}"
-              when :p || :port
+              when :p , :port
                 # port to use (default 80)
                 cli_options << " -port #{val}"
-              when :D || :Display
+              when :D , :Display
                 # turn on/off display outputs
                 if (val == 1 || val == 2 || val == 3 || 
                     val == 4 || val == A || val == D ) 
@@ -70,16 +70,16 @@ module Sicherheit
                 else
                   raise ArgumentError, "#{key.to_str}: Invalid value should be 1,2,3,4,A or D"
                 end
-              when :s || :ssl
+              when :s , :ssl
                 # force ssl mode on port
                 cli_options << " -ssl"
-              when :S || :Single
+              when :S , :Single
                 # Single request mode
                 cli_options << " -Sigle #{val}"
-              when :t || :timeout
+              when :t , :timeout
                 # timeout (default 2 seconds)
                 cli_options << " -timeout #{val}"
-              when :T || :Tuning
+              when :T , :Tuning
                 # scan tuning
                 if (val == 1 || val == 2 || val == 3 || val == 4 || val == 5 || val == 6 || 
                     val == 7 || val == 8 || val == 9 || val == 0 || val == "a" || val == "b" ||
@@ -95,10 +95,10 @@ module Sicherheit
               when :useproxy
                 # Use the HTTP proxy defined in the config.txt file.
                 cli_options << " -useproxy" 
-              when :V || :Version
+              when :V , :Version
                 # print plugin and database versions
                 cli_options << " -version"
-              when :v || :vhost+
+              when :v , :vhost+
                 # virtual host (for Host header)
                 cli_options << " -vhost"
               else
