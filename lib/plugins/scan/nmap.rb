@@ -1,5 +1,5 @@
 module Sicherheit
-  class Plugins
+  module Plugins
     module Scan
       module Nmap
         def nmap(options, target, &block)
@@ -7,20 +7,21 @@ module Sicherheit
           yield(r) if block_given?
         end
       
-        def hosts_with_ports()
+        def alives!
         end
         
-        def open_ports(result)
-          
+        def alives?
+        end
+        
+        def open_ports?(result)
         end
           
         #Short version that actually does not check for unknown options.
         def parse_target(options)  
           if target.is_a?(Hash)
-            options.each_pair do |key,val|
-              #targets << " -#{key.to_str} " 
-              #targets << val if !val.nil?
-            end
+            options.each_pair { |key,target| targets << target + " " }
+          elsif targe.is_a?(Array)
+            options.each { |target| targets << target + " " }
           elsif target.is_a?(String)
             targets
           end
@@ -151,6 +152,7 @@ module Sicherheit
                 when :max_rate
                   cli_options << " --max-rate #{val}"
                 when :defeat_rst_rate_limite
+                  # TODO !!! LAZY CHECK THIS ONE AND FINISH IT.
                 when :T
                   if val = "paranoid" # || ...
                     cli_options << " -T #{val}"
@@ -241,9 +243,9 @@ module Sicherheit
                   raise ArgumentError, "Nmap Options not found"
               end
             end
-            cli_options
+            return cli_options
           elsif options.is_a?(String)
-            options
+            return options
           end
         end
       end

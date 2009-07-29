@@ -2,7 +2,7 @@ require 'sicherheit/logger'
 require 'sicherheit/base'
 
 module Sicherheit
-  class Plugins
+  module Plugins
     module Scan
       module Nessus
       end

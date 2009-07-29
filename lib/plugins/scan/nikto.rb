@@ -2,11 +2,10 @@ require 'sicherheit/logger'
 require 'sicherheit/base'
 
 module Sicherheit
-  class Plugins
+  module Plugins
     module Scan
-      module Nikto
-        
-        def nikto(options, &block)
+      class Nikto  
+        def initialize(options, &block)
           if options.is_a?(Hash)
             r = run("nikto #{parse_opt(options)}")
           elsif options.is_a?(String)

@@ -7,7 +7,7 @@ include Sicherheit::Plugins::Scan
 describe Nmap do
 
   before(:each) do
-    #nmap_1 = nmap :sL => true, :excludefiles => "test.txt"
+   nmap_1 = nmap({:sL => true, :excludefiles => "test.txt"})
   end
   
   it "should create the right parsed output" do

@@ -26,17 +26,17 @@ module Sicherheit
       end
     end
 
-    %w(debug info trace).each do |log_level| 
+    %w(debug info trace).each do |log_level|
       class_eval "
         def #{log_level}(message)
           log('#{log_level.upcase}', message)
         end"
     end
-    
+
     def clean(msg)
       msg.match(/\n|\r/) != nil ? msg.strip!  : msg
     end
-    
+
     def close
      @device.close if @open
     end
