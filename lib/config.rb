@@ -9,7 +9,7 @@ module Sicherheit
 		def initialize(options={})
 			@logger = Logger.new options[:level] || {level => "INFO"}
 		end
-		include Connections, Exec, Servers, Variables
+		include Connections, Variables
 	end
 end
 
